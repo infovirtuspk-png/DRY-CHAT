@@ -1,0 +1,65 @@
+{
+  "name": "dry-chat",
+  "version": "1.0.0",
+  "description": "Dry Chat - Advanced Private Realtime Windows Desktop Messaging Application",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "test": "node tests/run-tests.js",
+    "build": "electron-builder --win",
+    "build:dir": "electron-builder --dir"
+  },
+  "keywords": [
+    "dry-chat",
+    "electron",
+    "desktop",
+    "messaging",
+    "realtime",
+    "secure",
+    "sqlite",
+    "firebase",
+    "cloudinary"
+  ],
+  "author": "Engineer Qasim Ahmad <info.virtuspk@gmail.com>",
+  "copyright": "Copyright © 2026 Virtuspk. Developed by Engineer Qasim Ahmad",
+  "license": "MIT",
+  "dependencies": {
+    "cloudinary": "^2.5.1",
+    "dotenv": "^16.4.7",
+    "firebase": "^11.4.0",
+    "sql.js": "^1.14.2",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "electron": "^34.3.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.virtuspk.drychat",
+    "productName": "Dry Chat",
+    "copyright": "Copyright © 2026 Virtuspk. Developed by Engineer Qasim Ahmad",
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "src/renderer/assets/icons/icon.ico",
+      "publisherName": "Virtuspk",
+      "legalTrademarks": "Virtuspk"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "files": [
+      "src/**/*",
+      "database/**/*",
+      "firebase/**/*",
+      "package.json",
+      "node_modules/**/*"
+    ]
+  }
+}

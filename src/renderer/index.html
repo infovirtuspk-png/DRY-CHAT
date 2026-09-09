@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dry Chat</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/titlebar.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <!-- 1. Custom Frameless Windows Title Bar -->
+  <header class="custom-titlebar" id="custom-titlebar">
+    <div class="titlebar-brand">
+      <img src="assets/icons/icon.svg" alt="Dry Chat" class="titlebar-logo">
+      <span>Dry Chat</span>
+      <div class="titlebar-status-pill" id="titlebar-status-pill">
+        <span class="status-dot" id="status-dot"></span>
+        <span id="status-text">Online</span>
+      </div>
+    </div>
+    <div class="titlebar-controls">
+      <button class="titlebar-btn" id="btn-minimize" title="Minimize">
+        <i class="bi bi-dash-lg"></i>
+      </button>
+      <button class="titlebar-btn" id="btn-maximize" title="Maximize">
+        <i class="bi bi-square" id="maximize-icon"></i>
+      </button>
+      <button class="titlebar-btn close-btn" id="btn-close" title="Close">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- 2. Application Root Container -->
+  <main id="app-root">
+
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+      <div class="splash-logo-wrapper">
+        <img src="assets/icons/icon.svg" alt="Dry Chat Logo" class="splash-logo">
+      </div>
+      <h1 class="splash-title">Dry Chat</h1>
+      <p class="splash-slogan">Secure • Simple • Realtime</p>
+      <div class="splash-loader"></div>
+    </div>
+
+    <!-- Auth Container -->
+    <div id="auth-container" style="display: none;">
+      <div class="auth-card">
+        <div class="auth-header">
+          <img src="assets/icons/icon.svg" alt="Dry Chat" class="auth-logo">
+          <h2 class="auth-title" id="auth-header-title">Welcome to Dry Chat</h2>
+          <p class="auth-subtitle" id="auth-header-subtitle">Private & Secure Realtime Messaging</p>
+        </div>
+
+        <!-- Login Form -->
+        <form id="login-form">
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" id="login-email" class="form-control-dc" placeholder="name@example.com" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" id="login-password" class="form-control-dc" placeholder="Enter your password" required autocomplete="current-password">
+          </div>
+          <button type="submit" class="btn-dc-primary" id="btn-login-submit">
+            <i class="bi bi-box-arrow-in-right"></i> Sign In
+          </button>
+          <div class="d-flex justify-content-between mt-3" style="display: flex; justify-content: space-between; font-size: 12px; margin-top: 14px;">
+            <a href="#" id="link-show-register" style="color: var(--accent-primary); text-decoration: none;">Create Account</a>
+            <a href="#" id="link-show-forgot" style="color: var(--text-muted); text-decoration: none;">Forgot Password?</a>
+          </div>
+        </form>
+
+        <!-- Register Form -->
+        <form id="register-form" style="display: none;">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" id="reg-name" class="form-control-dc" placeholder="e.g. John Doe" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" id="reg-email" class="form-control-dc" placeholder="name@example.com" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Username (Optional)</label>
+            <input type="text" id="reg-username" class="form-control-dc" placeholder="username" autocomplete="username">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" id="reg-password" class="form-control-dc" placeholder="Minimum 6 characters" required autocomplete="new-password">
+            <div class="password-strength-bar">
+              <div class="password-strength-fill" id="reg-strength-fill"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">About / Status</label>
+            <input type="text" id="reg-about" class="form-control-dc" placeholder="Available on Dry Chat" value="Available on Dry Chat">
+          </div>
+          <button type="submit" class="btn-dc-primary" id="btn-register-submit">
+            <i class="bi bi-person-plus"></i> Create Account & Get 13-Digit ID
+          </button>
+          <div class="text-center mt-3" style="text-align: center; font-size: 12px; margin-top: 14px;">
+            <span style="color: var(--text-muted);">Already have an account?</span>
+            <a href="#" id="link-show-login" style="color: var(--accent-primary); text-decoration: none; margin-left: 4px;">Sign In</a>
+          </div>
+        </form>
+
+        <!-- Forgot Password Form -->
+        <form id="forgot-form" style="display: none;">
+          <div class="form-group">
+            <label class="form-label">Enter registered email address</label>
+            <input type="email" id="forgot-email" class="form-control-dc" placeholder="name@example.com" required>
+          </div>
+          <button type="submit" class="btn-dc-primary" id="btn-forgot-submit">
+            <i class="bi bi-envelope"></i> Send Password Reset Link
+          </button>
+          <div class="text-center mt-3" style="text-align: center; font-size: 12px; margin-top: 14px;">
+            <a href="#" id="link-back-login" style="color: var(--accent-primary); text-decoration: none;">Back to Sign In</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Main Dashboard Application Container -->
+    <div id="main-dashboard" class="app-container" style="display: none;">
+      
+      <!-- 1. Left Sidebar -->
+      <section class="sidebar-panel">
+        
+        <!-- User Profile Summary Header -->
+        <div class="sidebar-header">
+          <div class="user-profile-summary" id="sidebar-user-summary" title="Click to view & edit profile">
+            <div class="avatar-wrapper">
+              <div class="avatar-placeholder" id="sidebar-user-avatar">DC</div>
+              <span class="presence-dot online"></span>
+            </div>
+            <div class="user-info-text">
+              <div class="user-name" id="sidebar-user-name">User Profile</div>
+              <div class="user-id-badge" id="sidebar-user-id" title="Click to copy User ID">
+                <i class="bi bi-shield-check"></i>
+                <span id="sidebar-id-text">ID: 0000 0000 00000</span>
+                <i class="bi bi-copy" style="font-size: 9px; margin-left: 2px;"></i>
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 6px;">
+            <button class="header-action-btn" id="btn-new-chat" title="New Chat (Search 13-Digit ID)">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+            <button class="header-action-btn" id="btn-new-group" title="New Group">
+              <i class="bi bi-people"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="sidebar-nav-tabs">
+          <button class="nav-tab-btn active" data-tab="chats">
+            <i class="bi bi-chat-dots-fill"></i> Chats
+          </button>
+          <button class="nav-tab-btn" data-tab="contacts">
+            <i class="bi bi-person-lines-fill"></i> Contacts
+          </button>
+          <button class="nav-tab-btn" data-tab="archived">
+            <i class="bi bi-archive"></i>
+          </button>
+          <button class="nav-tab-btn" data-tab="starred">
+            <i class="bi bi-star"></i>
+          </button>
+          <button class="nav-tab-btn" data-tab="settings">
+            <i class="bi bi-gear"></i>
+          </button>
+        </nav>
+
+        <!-- Search Bar -->
+        <div class="sidebar-search-container">
+          <div class="search-input-wrapper">
+            <i class="bi bi-search search-icon"></i>
+            <input type="text" id="sidebar-search-input" class="sidebar-search-input" placeholder="Search chats, contacts, messages...">
+          </div>
+        </div>
+
+        <!-- Chat List Container -->
+        <div class="chat-list-container" id="chat-list-container">
+          <!-- Dynamic chat items rendered by sidebar.js -->
+        </div>
+      </section>
+
+      <!-- 2. Central Chat Area -->
+      <section class="chat-area-panel" id="chat-area-panel">
+        
+        <!-- Empty State (No Chat Selected) -->
+        <div id="chat-empty-state" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center; padding: 20px;">
+          <img src="assets/icons/icon.svg" alt="Dry Chat" style="width: 84px; height: 84px; opacity: 0.8; margin-bottom: 16px;">
+          <h3 style="font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px;">Dry Chat Windows</h3>
+          <p style="font-size: 13px; color: var(--text-muted); max-width: 360px; line-height: 1.5;">
+            Select a conversation or start a new chat using a 13-digit Dry Chat ID. End-to-end messaging with ephemeral media transport.
+          </p>
+          <button class="btn-dc-primary mt-3" id="btn-empty-new-chat" style="max-width: 200px; margin-top: 18px;">
+            <i class="bi bi-person-plus"></i> Search 13-Digit ID
+          </button>
+        </div>
+
+        <!-- Active Chat Container (Hidden when no chat selected) -->
+        <div id="active-chat-container" style="display: none; flex-direction: column; height: 100%;">
+          
+          <!-- Chat Header (STRICTLY NO CALL BUTTONS!) -->
+          <div class="chat-header">
+            <div class="chat-header-info" id="chat-header-info">
+              <div class="avatar-wrapper">
+                <div class="avatar-placeholder avatar-sm" id="chat-header-avatar">U</div>
+                <span class="presence-dot" id="chat-header-presence"></span>
+              </div>
+              <div>
+                <div class="chat-header-name" id="chat-header-name">Conversation</div>
+                <div class="chat-header-status" id="chat-header-status">Offline</div>
+              </div>
+            </div>
+            
+            <div class="chat-header-actions">
+              <button class="header-action-btn" id="btn-search-chat" title="Search in Chat">
+                <i class="bi bi-search"></i>
+              </button>
+              <button class="header-action-btn" id="btn-toggle-info" title="Chat Details & Media">
+                <i class="bi bi-layout-sidebar-reverse"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- In-Chat Search Bar -->
+          <div id="chat-search-bar" style="display: none; padding: 8px 16px; background: var(--bg-surface); border-bottom: 1px solid var(--border-color); align-items: center; gap: 8px;">
+            <i class="bi bi-search" style="color: var(--text-muted);"></i>
+            <input type="text" id="chat-search-input" class="form-control-dc" placeholder="Search in this conversation..." style="padding: 6px 12px; font-size: 12px;">
+            <button class="header-action-btn" id="btn-close-chat-search" style="width: 28px; height: 28px;">
+              <i class="bi bi-x"></i>
+            </button>
+          </div>
+
+          <!-- Blocked User Warning Banner -->
+          <div id="chat-blocked-banner" style="display: none; padding: 10px 16px; background: rgba(239, 68, 68, 0.15); border-bottom: 1px solid rgba(239, 68, 68, 0.3); align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #FCA5A5;">
+              <i class="bi bi-slash-circle-fill" style="color: #EF4444; font-size: 14px;"></i>
+              <span>You have blocked this contact. Messaging is disabled.</span>
+            </div>
+            <button class="btn-dc-primary" id="btn-unblock-banner" style="padding: 4px 10px; font-size: 11px; width: auto; background: #EF4444; color: white;">
+              Unblock
+            </button>
+          </div>
+
+          <!-- PIN Lock Overlay Screen (Shown when active chat is locked) -->
+          <div id="chat-lock-overlay" style="display: none; flex: 1; flex-direction: column; align-items: center; justify-content: center; background: var(--bg-dark); padding: 20px; z-index: 20;">
+            <div style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 32px 28px; width: 100%; max-width: 360px; text-align: center; box-shadow: 0 16px 40px rgba(0,0,0,0.5);">
+              <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto;">
+                <i class="bi bi-shield-lock-fill" style="font-size: 28px; color: var(--accent-primary);"></i>
+              </div>
+              <h4 style="font-size: 17px; font-weight: 700; margin-bottom: 6px;" id="lock-overlay-title">Locked Conversation</h4>
+              <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 20px;">Enter your 4-digit PIN to access messages.</p>
+              
+              <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;">
+                <input type="password" id="chat-lock-pin-input" maxlength="4" style="letter-spacing: 12px; font-size: 24px; text-align: center; width: 180px; padding: 10px 12px; background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-primary); border-radius: 10px; outline: none;" placeholder="••••" autocomplete="off" autofocus>
+              </div>
+
+              <div id="chat-lock-error" style="display: none; color: #EF4444; font-size: 12px; margin-bottom: 12px; font-weight: 500;">
+                <i class="bi bi-exclamation-circle-fill"></i> Incorrect PIN code. Try again.
+              </div>
+
+              <button class="btn-dc-primary" id="btn-unlock-chat-submit" style="width: 100%; padding: 10px; font-weight: 600;">
+                <i class="bi bi-unlock-fill"></i> Unlock Chat
+              </button>
+            </div>
+          </div>
+
+          <!-- Messages Scroll View -->
+          <div class="messages-container" id="messages-container">
+            <!-- Dynamically populated messages -->
+          </div>
+
+          <!-- Message Composer Area -->
+          <div class="chat-composer-container" id="chat-composer-container">
+            
+            <!-- Reply Preview Bar (if replying) -->
+            <div id="reply-preview-container" class="reply-preview-bar" style="display: none;">
+              <div>
+                <div style="font-weight: 600; color: var(--accent-primary);" id="reply-to-name">Replying to</div>
+                <div style="color: var(--text-secondary); font-size: 11px;" id="reply-to-text" class="text-truncate-2">Original message...</div>
+              </div>
+              <button id="btn-cancel-reply" style="background: transparent; border: none; color: var(--text-muted); cursor: pointer;">
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </div>
+
+            <!-- Active Disappearing Timer Badge Bar -->
+            <div id="composer-timer-indicator" style="display: none; padding: 4px 16px; background: rgba(59, 130, 246, 0.1); border-top: 1px solid rgba(59, 130, 246, 0.2); font-size: 11px; color: var(--accent-primary); align-items: center; justify-content: space-between;">
+              <span><i class="bi bi-hourglass-split"></i> Disappearing Messages: <strong id="composer-timer-label">5s</strong></span>
+              <button id="btn-disable-composer-timer" style="background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 11px;">Turn Off</button>
+            </div>
+
+            <!-- Composer Input Row -->
+            <div class="composer-input-row">
+              
+              <!-- Emoji Picker Button -->
+              <button class="composer-btn" id="btn-toggle-emoji" title="Emojis">
+                <i class="bi bi-emoji-smile"></i>
+              </button>
+
+              <!-- Attachment Picker Button -->
+              <button class="composer-btn" id="btn-attachment-menu" title="Send Media (Image / Video)">
+                <i class="bi bi-paperclip"></i>
+              </button>
+
+              <!-- Disappearing Timer Quick Selector -->
+              <button class="composer-btn" id="btn-toggle-timer" title="Disappearing Messages Timer">
+                <i class="bi bi-hourglass-split"></i>
+              </button>
+
+              <!-- Timer Popover Menu -->
+              <div id="timer-picker-popover" class="emoji-picker-popover" style="display: none; width: 220px; padding: 8px; bottom: 58px; left: 80px;">
+                <div style="font-weight: 700; font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--border-color); margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                  <i class="bi bi-hourglass-split" style="color: var(--accent-primary);"></i> Self-Destruct Timer
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                  <button class="btn-dc-primary btn-set-timer-opt" data-seconds="0" style="justify-content: flex-start; background: transparent; color: var(--text-primary); border: none; font-size: 12px; padding: 6px 8px;">
+                    <i class="bi bi-slash-circle"></i> Off (Permanent)
+                  </button>
+                  <button class="btn-dc-primary btn-set-timer-opt" data-seconds="5" style="justify-content: flex-start; background: transparent; color: var(--text-primary); border: none; font-size: 12px; padding: 6px 8px;">
+                    <i class="bi bi-stopwatch"></i> 5 Seconds
+                  </button>
+                  <button class="btn-dc-primary btn-set-timer-opt" data-seconds="10" style="justify-content: flex-start; background: transparent; color: var(--text-primary); border: none; font-size: 12px; padding: 6px 8px;">
+                    <i class="bi bi-stopwatch"></i> 10 Seconds
+                  </button>
+                  <button class="btn-dc-primary btn-set-timer-opt" data-seconds="30" style="justify-content: flex-start; background: transparent; color: var(--text-primary); border: none; font-size: 12px; padding: 6px 8px;">
+                    <i class="bi bi-stopwatch"></i> 30 Seconds
+                  </button>
+                  <button class="btn-dc-primary btn-set-timer-opt" data-seconds="60" style="justify-content: flex-start; background: transparent; color: var(--text-primary); border: none; font-size: 12px; padding: 6px 8px;">
+                    <i class="bi bi-clock"></i> 1 Minute
+                  </button>
+                  <button class="btn-dc-primary btn-set-timer-opt" data-seconds="300" style="justify-content: flex-start; background: transparent; color: var(--text-primary); border: none; font-size: 12px; padding: 6px 8px;">
+                    <i class="bi bi-clock"></i> 5 Minutes
+                  </button>
+                  <button class="btn-dc-primary btn-set-timer-opt" data-seconds="3600" style="justify-content: flex-start; background: transparent; color: var(--text-primary); border: none; font-size: 12px; padding: 6px 8px;">
+                    <i class="bi bi-clock-history"></i> 1 Hour
+                  </button>
+                  <button class="btn-dc-primary btn-set-timer-opt" data-seconds="86400" style="justify-content: flex-start; background: transparent; color: var(--text-primary); border: none; font-size: 12px; padding: 6px 8px;">
+                    <i class="bi bi-calendar-event"></i> 24 Hours
+                  </button>
+                </div>
+              </div>
+
+              <!-- Emoji Popover Menu -->
+              <div id="emoji-picker-popover" class="emoji-picker-popover" style="display: none;">
+                <div style="padding: 8px; border-bottom: 1px solid var(--border-color);">
+                  <input type="text" id="emoji-search" class="form-control-dc" placeholder="Search emojis..." style="padding: 4px 8px; font-size: 12px;">
+                </div>
+                <div class="emoji-grid" id="emoji-grid">
+                  <!-- Populated dynamically -->
+                </div>
+              </div>
+
+              <!-- Message Textarea -->
+              <textarea id="composer-textarea" class="composer-textarea" rows="1" placeholder="Type a message..."></textarea>
+
+              <!-- Send Button -->
+              <button class="composer-btn send-btn" id="btn-send-message" title="Send Message">
+                <i class="bi bi-send-fill"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Collapsible Right Info Panel -->
+      <aside class="info-panel collapsed" id="info-panel">
+        <div style="padding: 16px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+          <h4 style="font-size: 14px; font-weight: 600;">Contact Details</h4>
+          <button class="header-action-btn" id="btn-close-info" style="width: 28px; height: 28px;">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <div style="padding: 20px; overflow-y: auto; flex: 1;">
+          <div style="text-align: center; margin-bottom: 18px;">
+            <div class="avatar-placeholder avatar-xl" style="margin: 0 auto 12px auto;" id="info-avatar">DC</div>
+            <h3 style="font-size: 16px; font-weight: 600;" id="info-name">Name</h3>
+            <p style="font-size: 12px; color: var(--text-muted);" id="info-about">Available on Dry Chat</p>
+          </div>
+
+          <!-- Luxury Digital ID Card for Contact -->
+          <div class="digital-id-card" style="margin-bottom: 18px; padding: 16px; border-radius: 12px;">
+            <div class="digital-id-header" style="margin-bottom: 8px;">
+              <div class="digital-id-brand" style="font-size: 10px;">
+                <i class="bi bi-shield-lock-fill" style="color: #60A5FA;"></i>
+                <span>DRY CHAT ID</span>
+              </div>
+              <div class="digital-id-chip-icon" style="width: 22px; height: 16px;"></div>
+            </div>
+            <div style="font-size: 9px; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px;">Verified Direct ID</div>
+            <div class="digital-id-number-display" style="font-size: 15px; margin-bottom: 0;">
+              <span id="info-user-id">0000 0000 00000</span>
+              <button class="header-action-btn" id="btn-copy-info-id" title="Copy ID" style="width: 28px; height: 28px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); color: #FFFFFF;">
+                <i class="bi bi-clipboard" style="font-size: 11px;"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Privacy & Security Controls -->
+          <div style="margin-bottom: 18px; display: flex; flex-direction: column; gap: 8px;">
+            <button class="btn-dc-primary" id="btn-toggle-lock-chat" style="background: var(--bg-surface); color: var(--text-primary); border: 1px solid var(--border-color); justify-content: flex-start; padding: 10px 14px;">
+              <i class="bi bi-shield-lock" style="color: var(--accent-primary);"></i>
+              <span id="label-lock-chat">Lock Chat with PIN</span>
+            </button>
+
+            <button class="btn-dc-primary" id="btn-info-chat-timer" style="background: var(--bg-surface); color: var(--text-primary); border: 1px solid var(--border-color); justify-content: flex-start; padding: 10px 14px;">
+              <i class="bi bi-hourglass-split" style="color: #F59E0B;"></i>
+              <span id="label-info-chat-timer">Disappearing Messages: Off</span>
+            </button>
+
+            <button class="btn-dc-primary" id="btn-toggle-block-user" style="background: var(--bg-surface); color: #EF4444; border: 1px solid var(--border-color); justify-content: flex-start; padding: 10px 14px;">
+              <i class="bi bi-slash-circle"></i>
+              <span id="label-block-user">Block User</span>
+            </button>
+          </div>
+
+          <!-- Media Gallery Tabs -->
+          <div style="margin-top: 16px;">
+            <h5 style="font-size: 13px; font-weight: 600; margin-bottom: 10px;">Media Gallery</h5>
+            <div id="info-media-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
+              <!-- Dynamic media items -->
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 8px;">
+            <button class="btn-dc-primary" id="btn-export-chat" style="background: var(--bg-surface); color: var(--text-primary); border: 1px solid var(--border-color);">
+              <i class="bi bi-download"></i> Export Chat History
+            </button>
+            <button class="btn-dc-primary" id="btn-clear-chat" style="background: var(--bg-surface); color: var(--accent-badge); border: 1px solid var(--border-color);">
+              <i class="bi bi-trash"></i> Clear Chat Messages
+            </button>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- Modals Container -->
+    <div id="modal-container" style="display: none;"></div>
+
+    <!-- Fullscreen Media Viewer -->
+    <div id="media-viewer" class="media-viewer-backdrop" style="display: none;">
+      <div class="media-viewer-toolbar">
+        <button class="header-action-btn" id="btn-mv-save" title="Save Copy"><i class="bi bi-download"></i></button>
+        <button class="header-action-btn" id="btn-mv-folder" title="Show in Folder"><i class="bi bi-folder2-open"></i></button>
+        <button class="header-action-btn" id="btn-mv-rotate" title="Rotate"><i class="bi bi-arrow-clockwise"></i></button>
+        <button class="header-action-btn" id="btn-mv-close" title="Close (Esc)"><i class="bi bi-x-lg"></i></button>
+      </div>
+      <div class="media-viewer-content" id="media-viewer-content">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div id="toast-container"></div>
+
+  </main>
+
+  <!-- Modular Scripts -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
