@@ -100,7 +100,26 @@ Output binaries will be generated in `dist/`.
 
 ---
 
-## 7. Keyboard Shortcuts
+## 7. Download Installer
+
+You can download the pre-built Windows installer and portable executable directly from the repository:
+
+### Download Options:
+
+- **Setup Installer (Recommended)**: [Download Dry Chat Setup 1.0.0.exe](./dist/Dry%20Chat%20Setup%201.0.0.exe) (~96.8 MB)
+  - Full NSIS installer with automatic setup and configuration
+  
+- **Portable Executable**: [Download Dry Chat 1.0.0.exe](./dist/Dry%20Chat%201.0.0.exe) (~96.6 MB)
+  - Standalone portable version - no installation required
+
+> [!NOTE]
+> The files are hosted directly in the repository. Click the links above to download the installer or portable version directly.
+
+---
+
+---
+
+## 8. Keyboard Shortcuts
 
 - `Ctrl + K` : Search 13-Digit ID / New Chat
 - `Ctrl + Shift + N` : Create New Group
