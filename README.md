@@ -162,6 +162,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 **Built with ❤️ using Electron.js**
 
-Made with [Devin](https://devin.ai)
+Made with [Engineer Qasim Ahmad](https://qasimahmad.wasmer.app)
 
 </div>
