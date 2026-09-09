@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="dc-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="50%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+    <linearGradient id="dc-glow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#1E40AF" stop-opacity="0.2"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#1E3A8A" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background Bubble -->
+  <path d="M256,48 C141.12,48 48,137.12 48,247 C48,306.72 75.36,360.32 119.2,396.96 L88,464 L164.48,438.24 C192.48,452.16 223.36,460 256,460 C370.88,460 464,370.88 464,261 C464,151.12 370.88,48 256,48 Z" 
+        fill="url(#dc-grad)" 
+        filter="url(#shadow)"/>
+
+  <!-- Minimalist Stylized 'D' -->
+  <path d="M192,156 L264,156 C314.81,156 356,197.19 356,248 C356,298.81 314.81,340 264,340 L192,340 L192,156 Z M236,196 L236,300 L264,300 C292.72,300 316,276.72 316,248 C316,219.28 292.72,196 264,196 L236,196 Z" 
+        fill="#FFFFFF"/>
+
+  <!-- Modern Accent Dot -->
+  <circle cx="280" cy="248" r="14" fill="#60A5FA" />
+</svg>

@@ -1,0 +1,267 @@
+/* Dry Chat Theme Engine - 7 Curated Commercial Themes */
+
+:root, [data-theme="dark"] {
+  --bg-app: #0B0F14;
+  --bg-sidebar: #121820;
+  --bg-surface: #18212B;
+  --bg-surface-hover: #202C3A;
+  --bg-surface-active: #283749;
+  --bg-header: #121820;
+  --bg-chat: #0E141C;
+  --bg-composer: #121820;
+  --bg-input: #18212B;
+  
+  --msg-outgoing: #1D4ED8;
+  --msg-outgoing-text: #FFFFFF;
+  --msg-outgoing-meta: rgba(255, 255, 255, 0.7);
+  --msg-incoming: #1E293B;
+  --msg-incoming-text: #F1F5F9;
+  --msg-incoming-meta: #94A3B8;
+
+  --accent-primary: #3B82F6;
+  --accent-primary-hover: #2563EB;
+  --accent-secondary: #60A5FA;
+  --accent-badge: #EF4444;
+
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-focus: rgba(59, 130, 246, 0.5);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+  
+  --scrollbar-track: #0B0F14;
+  --scrollbar-thumb: #283749;
+  --scrollbar-thumb-hover: #3B82F6;
+}
+
+[data-theme="light"] {
+  --bg-app: #F3F4F6;
+  --bg-sidebar: #FFFFFF;
+  --bg-surface: #F9FAFB;
+  --bg-surface-hover: #F3F4F6;
+  --bg-surface-active: #E5E7EB;
+  --bg-header: #FFFFFF;
+  --bg-chat: #F8FAFC;
+  --bg-composer: #FFFFFF;
+  --bg-input: #F3F4F6;
+
+  --msg-outgoing: #2563EB;
+  --msg-outgoing-text: #FFFFFF;
+  --msg-outgoing-meta: rgba(255, 255, 255, 0.8);
+  --msg-incoming: #FFFFFF;
+  --msg-incoming-text: #1E293B;
+  --msg-incoming-meta: #64748B;
+
+  --accent-primary: #2563EB;
+  --accent-primary-hover: #1D4ED8;
+  --accent-secondary: #3B82F6;
+  --accent-badge: #EF4444;
+
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+
+  --border-color: rgba(0, 0, 0, 0.08);
+  --border-focus: rgba(37, 99, 235, 0.4);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+
+  --scrollbar-track: #F3F4F6;
+  --scrollbar-thumb: #D1D5DB;
+  --scrollbar-thumb-hover: #9CA3AF;
+}
+
+[data-theme="midnight"] {
+  --bg-app: #030712;
+  --bg-sidebar: #0B0F19;
+  --bg-surface: #111827;
+  --bg-surface-hover: #1F2937;
+  --bg-surface-active: #374151;
+  --bg-header: #0B0F19;
+  --bg-chat: #060A13;
+  --bg-composer: #0B0F19;
+  --bg-input: #111827;
+
+  --msg-outgoing: #4F46E5;
+  --msg-outgoing-text: #FFFFFF;
+  --msg-outgoing-meta: rgba(255, 255, 255, 0.7);
+  --msg-incoming: #1F2937;
+  --msg-incoming-text: #F9FAFB;
+  --msg-incoming-meta: #9CA3AF;
+
+  --accent-primary: #6366F1;
+  --accent-primary-hover: #4F46E5;
+  --accent-secondary: #818CF8;
+  --accent-badge: #F43F5E;
+
+  --text-primary: #F9FAFB;
+  --text-secondary: #9CA3AF;
+  --text-muted: #6B7280;
+
+  --border-color: rgba(255, 255, 255, 0.06);
+  --border-focus: rgba(99, 102, 241, 0.5);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.7);
+
+  --scrollbar-track: #030712;
+  --scrollbar-thumb: #1F2937;
+  --scrollbar-thumb-hover: #6366F1;
+}
+
+[data-theme="ocean"] {
+  --bg-app: #081B26;
+  --bg-sidebar: #0C2738;
+  --bg-surface: #103349;
+  --bg-surface-hover: #164360;
+  --bg-surface-active: #1D567B;
+  --bg-header: #0C2738;
+  --bg-chat: #06151F;
+  --bg-composer: #0C2738;
+  --bg-input: #103349;
+
+  --msg-outgoing: #0284C7;
+  --msg-outgoing-text: #FFFFFF;
+  --msg-outgoing-meta: rgba(255, 255, 255, 0.7);
+  --msg-incoming: #133D56;
+  --msg-incoming-text: #F0F9FF;
+  --msg-incoming-meta: #7DD3FC;
+
+  --accent-primary: #38BDF8;
+  --accent-primary-hover: #0EA5E9;
+  --accent-secondary: #7DD3FC;
+  --accent-badge: #FB7185;
+
+  --text-primary: #F0F9FF;
+  --text-secondary: #BAE6FD;
+  --text-muted: #6BA3C2;
+
+  --border-color: rgba(56, 189, 248, 0.12);
+  --border-focus: rgba(56, 189, 248, 0.5);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.6);
+
+  --scrollbar-track: #081B26;
+  --scrollbar-thumb: #164360;
+  --scrollbar-thumb-hover: #38BDF8;
+}
+
+[data-theme="purple"] {
+  --bg-app: #120E24;
+  --bg-sidebar: #1A1435;
+  --bg-surface: #241C49;
+  --bg-surface-hover: #30265E;
+  --bg-surface-active: #3F327A;
+  --bg-header: #1A1435;
+  --bg-chat: #0D0A1B;
+  --bg-composer: #1A1435;
+  --bg-input: #241C49;
+
+  --msg-outgoing: #7C3AED;
+  --msg-outgoing-text: #FFFFFF;
+  --msg-outgoing-meta: rgba(255, 255, 255, 0.7);
+  --msg-incoming: #281F52;
+  --msg-incoming-text: #FAF5FF;
+  --msg-incoming-meta: #C084FC;
+
+  --accent-primary: #A855F7;
+  --accent-primary-hover: #9333EA;
+  --accent-secondary: #C084FC;
+  --accent-badge: #F43F5E;
+
+  --text-primary: #FAF5FF;
+  --text-secondary: #D8B4FE;
+  --text-muted: #8E7AA8;
+
+  --border-color: rgba(168, 85, 247, 0.15);
+  --border-focus: rgba(168, 85, 247, 0.5);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.6);
+
+  --scrollbar-track: #120E24;
+  --scrollbar-thumb: #30265E;
+  --scrollbar-thumb-hover: #A855F7;
+}
+
+[data-theme="emerald"] {
+  --bg-app: #061A14;
+  --bg-sidebar: #0A261D;
+  --bg-surface: #0E3529;
+  --bg-surface-hover: #144939;
+  --bg-surface-active: #1B5F4A;
+  --bg-header: #0A261D;
+  --bg-chat: #04120E;
+  --bg-composer: #0A261D;
+  --bg-input: #0E3529;
+
+  --msg-outgoing: #059669;
+  --msg-outgoing-text: #FFFFFF;
+  --msg-outgoing-meta: rgba(255, 255, 255, 0.7);
+  --msg-incoming: #103D2F;
+  --msg-incoming-text: #ECFDF5;
+  --msg-incoming-meta: #6EE7B7;
+
+  --accent-primary: #10B981;
+  --accent-primary-hover: #059669;
+  --accent-secondary: #34D399;
+  --accent-badge: #F43F5E;
+
+  --text-primary: #ECFDF5;
+  --text-secondary: #A7F3D0;
+  --text-muted: #5C8C7A;
+
+  --border-color: rgba(16, 185, 129, 0.15);
+  --border-focus: rgba(16, 185, 129, 0.5);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.6);
+
+  --scrollbar-track: #061A14;
+  --scrollbar-thumb: #144939;
+  --scrollbar-thumb-hover: #10B981;
+}
+
+[data-theme="sunset"] {
+  --bg-app: #1A0D15;
+  --bg-sidebar: #261320;
+  --bg-surface: #351A2C;
+  --bg-surface-hover: #48233C;
+  --bg-surface-active: #5E2E4E;
+  --bg-header: #261320;
+  --bg-chat: #130910;
+  --bg-composer: #261320;
+  --bg-input: #351A2C;
+
+  --msg-outgoing: #E11D48;
+  --msg-outgoing-text: #FFFFFF;
+  --msg-outgoing-meta: rgba(255, 255, 255, 0.7);
+  --msg-incoming: #3E1E34;
+  --msg-incoming-text: #FFF1F2;
+  --msg-incoming-meta: #FDA4AF;
+
+  --accent-primary: #F43F5E;
+  --accent-primary-hover: #E11D48;
+  --accent-secondary: #FB7185;
+  --accent-badge: #FB923C;
+
+  --text-primary: #FFF1F2;
+  --text-secondary: #FECDD3;
+  --text-muted: #9E748B;
+
+  --border-color: rgba(244, 63, 94, 0.15);
+  --border-focus: rgba(244, 63, 94, 0.5);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.6);
+
+  --scrollbar-track: #1A0D15;
+  --scrollbar-thumb: #48233C;
+  --scrollbar-thumb-hover: #F43F5E;
+}

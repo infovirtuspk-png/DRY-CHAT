@@ -1,0 +1,33 @@
+appId: com.drychat.desktop
+productName: Dry Chat
+copyright: Copyright © 2026 Dry Chat Team
+
+directories:
+  output: dist
+  buildResources: src/renderer/assets
+
+files:
+  - "src/**/*"
+  - "database/**/*"
+  - "firebase/**/*"
+  - "package.json"
+  - "node_modules/**/*"
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+    - target: portable
+      arch:
+        - x64
+  icon: src/renderer/assets/icons/icon.ico
+  requestedExecutionLevel: asInvoker
+
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Dry Chat
+  uninstallDisplayName: Dry Chat
